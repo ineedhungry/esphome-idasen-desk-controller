@@ -17,7 +17,7 @@ IdasenDeskControllerComponent = idasen_desk_controller_ns.class_(
 CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(IdasenDeskControllerComponent),
     cv.Optional(CONF_ONLY_UP_DOWN_COMMAND, default=False): cv.boolean,
-}).extend(cv.COMPONENT_SCHEMA).extend(ble_client.BLE_CLIENT_SCHEMA).extend(cover.COVER_SCHEMA)
+}).extend(cv.COMPONENT_SCHEMA).extend(ble_client.BLE_CLIENT_SCHEMA)
 
 
 async def to_code(config):
