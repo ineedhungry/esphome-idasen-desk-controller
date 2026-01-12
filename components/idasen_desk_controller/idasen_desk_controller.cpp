@@ -22,7 +22,7 @@ void IdasenDeskControllerComponent::setup() {
 
 void IdasenDeskControllerComponent::dump_config() {
   ESP_LOGCONFIG(TAG, "Idasen Desk Controller:");
-  ESP_LOGCONFIG(TAG, "  MAC address        : %s", this->parent()->address_str().c_str());
+  ESP_LOGCONFIG(TAG, "  MAC address        : %s", this->parent()->address_str());
   ESP_LOGCONFIG(TAG, "  Notifications      : %s", this->notify_disable_ ? "disable" : "enable");
   LOG_COVER("  ", "Desk", this);
 }
