@@ -42,30 +42,16 @@ ble_client:
 > On OSX, you can find the mac address of the desk by first connecting to it using a supported app (like [Idasen Controller](https://github.com/DWilliames/idasen-controller-mac) or [Desk Remote Control](https://apps.apple.com/us/app/desk-remote-control/id1509037746)), and then running this command in terminal:
 `system_profiler SPBluetoothDataType`
 
-### Idasen Desk Controller
+### Idasen Desk Controller and Cover
 
 Then you need to enable this component with the id of the ble_client component:
 
 ```yaml
 idasen_desk_controller:
-    # Reference to the ble client component id
-    # -----------
-    # Required
-    ble_client_id: idasen_desk
-    # Fallback to use only up and down commands (less precise)
-    # -----------
-    # Optional
-    only_up_down_command: false
-```
-
-### Cover
-
-Now you can add the cover component that will allow you to control your desk:
-
-```yaml
-cover:
-  - platform: idasen_desk_controller
-    name: "Desk"
+  ble_client_id: idasen_desk
+  id: my_desk
+  name: "Desk"
+  only_up_down_command: false
 ```
 
 ### Extra Desk informations
@@ -154,20 +140,6 @@ binary_sensor:
 ```
 
 ## Troubleshooting
-
-### ESPHome lower than 1.19.0
-
-Check the version [v1.2.4](https://github.com/j5lien/esphome-idasen-desk-controller/releases/tag/v1.2.4) of this component
-
-### Not moving using cover component
-
-If the desk is not moving using the cover component you can try to activate a fallback option `only_up_down_command`. It will only use up and down commands to control the desk height, it is less precise when you specify a target position.
-
-```yaml
-idasen_desk_controller:
-    ble_client_id: idasen_desk
-    only_up_down_command: true
-```
 
 ### Wifi deconnexion
 
