@@ -1,4 +1,4 @@
-This project is archived as Idasen Desk is now compatbile with Home Assistant and ESPHome Bluetooth Proxy (https://www.home-assistant.io/integrations/idasen_desk/).
+I had issues with the core home assitant integration (https://www.home-assistant.io/integrations/idasen_desk/). I took the code from https://github.com/j5lien/esphome-idasen-desk-controller and updated it to work with newer versions of esphome.
 -------------
 
 This component creates a bluetooth bridge for an [Ikea Idasen](https://www.ikea.com/gb/en/p/idasen-desk-sit-stand-brown-dark-grey-s19280958/) desk that uses a Linak controller with [ESPHome](https://esphome.io) and an [ESP32 device](https://esphome.io/devices/esp32.html).
@@ -161,7 +161,7 @@ wifi:
 ```
 
 ## References
-
+* https://github.com/j5lien/esphome-idasen-desk-controller
 * https://github.com/TheRealMazur/LinakDeskEsp32Controller
 * https://esphome.io/components/ble_client.html
 * https://esphome.io/components/sensor/ble_client.html
