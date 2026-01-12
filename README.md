@@ -12,14 +12,15 @@ The desk is controlled using the [cover integration](https://www.home-assistant.
 ## Dependencies
 
 * This component requires an [ESP32 device](https://esphome.io/devices/esp32.html).
-* [ESPHome 2021.10.0 or higher](https://github.com/esphome/esphome/releases).
+* [ESPHome 2021.11.0 or higher](https://github.com/esphome/esphome/releases).
 
 ## Installation
 
 You can install this component with [ESPHome external components feature](https://esphome.io/components/external_components.html) like this:
 ```
 external_components:
-  - source: github://j5lien/esphome-idasen-desk-controller@v4.0.0
+  - source: github://ineedhungry/esphome-idasen-desk-controller
+    refresh: always
 ```
 
 For the first connection you will need to press the pairing button on the desk.
