@@ -5,7 +5,7 @@ from . import IdasenDeskControllerComponent, CONF_IDASEN_DESK_CONTROLLER_ID
 
 DEPENDENCIES = ['esp32', 'idasen_desk_controller']
 
-CONFIG_SCHEMA = cover.COVER_SCHEMA.extend(({
+CONFIG_SCHEMA = cover.cover_schema.extend(({
     cv.GenerateID(CONF_IDASEN_DESK_CONTROLLER_ID): cv.use_id(IdasenDeskControllerComponent),
 }))
 
