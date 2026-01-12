@@ -173,11 +173,11 @@ void IdasenDeskControllerComponent::publish_cover_state_(uint8_t *value, uint16_
   float position = transform_height_to_position((float) height);
 
   if (speed == 0) {
-    this->current_operation = cover::cover_operation_idle;
+    this->current_operation = cover::COVER_OPERATION_IDLE;
   } else if (this->position < position) {
-    this->current_operation = cover::cover_operation_opening;
+    this->current_operation = cover::COVER_OPERATION_OPENING;
   } else if (this->position > position) {
-    this->current_operation = cover::cover_operation_closing;
+    this->current_operation = cover::COVER_OPERATION_CLOSING;
   }
 
   this->position = position;
@@ -186,7 +186,7 @@ void IdasenDeskControllerComponent::publish_cover_state_(uint8_t *value, uint16_
 
 void IdasenDeskControllerComponent::move_desk_() {
   if (this->notify_disable_) {
-    if (this->controlled_ || this->current_operation != cover::cover_operation_idle) {
+    if (this->controlled_ || this->current_operation != cover::COVER_OPERATION_IDLE) {
       this->read_value_(this->output_handle_);
     }
   }
@@ -224,7 +224,7 @@ void IdasenDeskControllerComponent::control(const cover::CoverCall &call) {
   }
 
   if (call.get_position().has_value()) {
-    if (this->current_operation != cover::cover_operation_idle) {
+    if (this->current_operation != cover::COVER_OPERATION_IDLE) {
       this->stop_move_();
     }
 
@@ -235,9 +235,9 @@ void IdasenDeskControllerComponent::control(const cover::CoverCall &call) {
     }
 
     if (this->position_target_ > this->position) {
-      this->current_operation = cover::cover_operation_opening;
+      this->current_operation = cover::COVER_OPERATION_OPENING;
     } else {
-      this->current_operation = cover::cover_operation_closing;
+      this->current_operation = cover::COVER_OPERATION_CLOSING;
     }
 
     this->start_move_torwards_();
@@ -255,17 +255,17 @@ void IdasenDeskControllerComponent::start_move_torwards_() {
   if (this->notify_disable_) {
     this->not_moving_loop_ = 0;
   }
-  if (false == this->use_only_up_down_command_) {
+  if (false == this->only_up_down_command_) {
     this->write_value_(this->control_handle_, 0xFE);
     this->write_value_(this->control_handle_, 0xFF);
   }
 }
 
 void IdasenDeskControllerComponent::move_torwards_() {
-  if (this->use_only_up_down_command_) {
-    if (this->current_operation == cover::cover_operation_opening) {
+  if (this->only_up_down_command_) {
+    if (this->current_operation == cover::COVER_OPERATION_OPENING) {
       this->write_value_(this->control_handle_, 0x47);
-    } else if (this->current_operation == cover::cover_operation_closing) {
+    } else if (this->current_operation == cover::COVER_OPERATION_CLOSING) {
       this->write_value_(this->control_handle_, 0x46);
     }
   } else {
@@ -275,7 +275,7 @@ void IdasenDeskControllerComponent::move_torwards_() {
 
 void IdasenDeskControllerComponent::stop_move_() {
   this->write_value_(this->control_handle_, 0xFF);
-  if (false == this->use_only_up_down_command_) {
+  if (false == this->only_up_down_command_) {
     this->write_value_(this->input_handle_, 0x8001);
   }
 
