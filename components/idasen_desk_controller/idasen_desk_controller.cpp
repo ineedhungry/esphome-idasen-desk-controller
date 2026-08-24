@@ -57,8 +57,8 @@ void IdasenDeskControllerComponent::gattc_event_handler(esp_gattc_cb_event_t eve
       auto chr_output = this->parent()->get_characteristic(this->output_service_uuid_, this->output_char_uuid_);
       if (chr_output == nullptr) {
         this->status_set_warning();
-        ESP_LOGW(TAG, "No characteristic found at service %s char %s", this->output_service_uuid_.to_string().c_str(),
-                 this->output_char_uuid_.to_string().c_str());
+        ESP_LOGW(TAG, "No characteristic found at service %s char %s", this->output_service_uuid_.to_str().c_str(),
+                 this->output_char_uuid_.to_str().c_str());
         break;
       }
       this->output_handle_ = chr_output->handle;
@@ -75,8 +75,8 @@ void IdasenDeskControllerComponent::gattc_event_handler(esp_gattc_cb_event_t eve
       auto chr_input = this->parent()->get_characteristic(this->input_service_uuid_, this->input_char_uuid_);
       if (chr_input == nullptr) {
         this->status_set_warning();
-        ESP_LOGW(TAG, "No characteristic found at service %s char %s", this->input_service_uuid_.to_string().c_str(),
-                 this->input_char_uuid_.to_string().c_str());
+        ESP_LOGW(TAG, "No characteristic found at service %s char %s", this->input_service_uuid_.to_str().c_str(),
+                 this->input_char_uuid_.to_str().c_str());
         break;
       }
       this->input_handle_ = chr_input->handle;
@@ -86,8 +86,8 @@ void IdasenDeskControllerComponent::gattc_event_handler(esp_gattc_cb_event_t eve
       auto chr_control = this->parent()->get_characteristic(this->control_service_uuid_, this->control_char_uuid_);
       if (chr_control == nullptr) {
         this->status_set_warning();
-        ESP_LOGW(TAG, "No characteristic found at service %s char %s", this->control_service_uuid_.to_string().c_str(),
-                 this->control_char_uuid_.to_string().c_str());
+        ESP_LOGW(TAG, "No characteristic found at service %s char %s", this->control_service_uuid_.to_str().c_str(),
+                 this->control_char_uuid_.to_str().c_str());
         break;
       }
       this->control_handle_ = chr_control->handle;
